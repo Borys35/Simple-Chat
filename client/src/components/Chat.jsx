@@ -13,7 +13,11 @@ class Chat extends Component {
   constructor(props) {
     super(props);
 
-    this.socket = io('http://localhost:5000');
+    //this.socket = io('http://localhost:5000');
+    this.socket = io(
+      `${window.location.protocol}//${window.location.hostname}`
+    );
+    console.log(`${window.location.protocol}//${window.location.hostname}`);
     this.socket.emit('connected', props.username, props.roomName);
 
     this.socket.on('init', (users, username) => {
