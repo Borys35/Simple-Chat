@@ -13,11 +13,15 @@ class Chat extends Component {
   constructor(props) {
     super(props);
 
+    // EVERY VERSION IS WORKING
+
     //this.socket = io('http://localhost:5000');
-    this.socket = io(
-      `${window.location.protocol}//${window.location.hostname}`
-    );
-    console.log(`${window.location.protocol}//${window.location.hostname}`);
+
+    // this.socket = io(
+    //   `${window.location.protocol}//${window.location.hostname}`
+    // );
+
+    this.socket = io('https://neum-chat.herokuapp.com');
     this.socket.emit('connected', props.username, props.roomName);
 
     this.socket.on('init', (users, username) => {
