@@ -1,0 +1,146 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1b1f27;
+  color: #fff;
+  height: 100vh;
+  font-size: 20px;
+}
+
+input,
+button {
+  font-size: 20px;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glow {
+  color: rgb(202, 14, 14) !important;
+  text-shadow: 0 0 15px rgb(202, 14, 14);
+}
+
+.neu {
+  padding: 15px 25px;
+  border-radius: 46px;
+  background: #1b1f27;
+  box-shadow: 5px 5px 10px #101217, -5px -5px 10px #262c37;
+}
+
+.title {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+input.neu,
+button.neu {
+  border: none;
+  outline: none;
+  color: rgb(214, 0, 0);
+}
+
+input.neu,
+button.neu:active {
+  box-shadow: inset 5px 5px 10px #101217, inset -5px -5px 10px #262c37;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login {
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login > * {
+  margin: 20px;
+}
+
+.login > .btn {
+  transition: 0.3s;
+}
+
+.login > .btn:disabled {
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+.label {
+  margin-top: 30px !important;
+  margin-bottom: 0 !important;
+}
+
+.button {
+  margin-top: 50px !important;
+}
+
+.content-grid {
+  width: 90%;
+  height: 90%;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 75vh 1fr;
+  grid-gap: 15px;
+  grid-template-areas:
+    'list box'
+    'list input';
+}
+
+.content-grid > .list {
+  grid-area: list;
+}
+
+.content-grid > .box {
+  grid-area: box;
+}
+
+.content-grid > .input {
+  grid-area: input;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+}
+
+.input {
+  display: flex;
+}
+
+.input > input[type='text'] {
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+.center {
+  text-align: center;
+}
+
+.users-list,
+.chat-box {
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.users-list > ul {
+  padding-left: 10px;
+}
+
+.chat-box > ul > .chat-message {
+  overflow-wrap: break-word;
+}
