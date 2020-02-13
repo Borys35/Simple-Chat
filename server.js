@@ -1,5 +1,16 @@
-const server = require('http').createServer();
+const express = require('express');
+const app = express();
+const server = require('http').createServer(app);
 const io = require('socket.io')(server);
+const path = require('path');
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 // DABATABE TO IMPLEMENT IN FUTURE
 const rooms = [];
