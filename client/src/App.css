@@ -68,7 +68,7 @@ button.neu:active {
 }
 
 .login > * {
-  margin: 20px;
+  margin: 20px 0;
 }
 
 .login > .btn {
@@ -80,9 +80,13 @@ button.neu:active {
   opacity: 0.6;
 }
 
-.label {
+.login .label {
   margin-top: 30px !important;
   margin-bottom: 0 !important;
+}
+
+.login .input {
+  min-width: 320px;
 }
 
 .button {
@@ -94,7 +98,7 @@ button.neu:active {
   height: 90%;
   display: grid;
   grid-template-columns: 1fr 4fr;
-  grid-template-rows: 75vh 1fr;
+  grid-template-rows: 76vh 1fr;
   grid-gap: 15px;
   grid-template-areas:
     'list box'
@@ -122,9 +126,22 @@ ul {
   display: flex;
 }
 
-.input > input[type='text'] {
+.input > * {
+  padding: 0;
+}
+
+.input > input {
+  padding-left: 25px;
   flex-grow: 1;
   margin-right: 20px;
+}
+
+.input > button {
+  padding: 0 20px;
+}
+
+.input > button::before {
+  content: 'Send';
 }
 
 .center {
@@ -143,4 +160,38 @@ ul {
 
 .chat-box > ul > .chat-message {
   overflow-wrap: break-word;
+}
+
+@media only screen and (max-width: 600px) {
+  .neu.login,
+  .neu.content-grid {
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .login {
+    width: 100%;
+    height: 100%;
+  }
+
+  .content-grid {
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 3fr 55px;
+    grid-gap: 15px;
+    grid-template-areas:
+      'list'
+      'box'
+      'input';
+  }
+
+  .input > button::before {
+    content: '>';
+  }
+
+  .chat-box > ul,
+  .users-list > ul {
+    padding: 0;
+  }
 }

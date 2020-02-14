@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 function ChatBox(props) {
+  const chatEnd = useRef(null);
+
+  useEffect(() => {
+    chatEnd.current.scrollIntoView();
+  }, [props.messages]);
+
   return (
     <div className="chat-box">
       <ul>
@@ -12,6 +18,7 @@ function ChatBox(props) {
           );
         })}
       </ul>
+      <div ref={chatEnd}></div>
     </div>
   );
 }

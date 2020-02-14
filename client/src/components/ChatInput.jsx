@@ -23,9 +23,7 @@ function ChatInput(props) {
         onChange={handleChange}
         onKeyPress={e => e.key === 'Enter' && handleSend()}
       />
-      <button className="neu glow" onClick={handleSend}>
-        Send
-      </button>
+      <button className="neu glow" onClick={handleSend}></button>
     </div>
   );
 }
