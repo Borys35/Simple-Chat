@@ -1,10 +1,10 @@
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Cabin', sans-serif;
   box-sizing: border-box;
 }
 
 body {
-  background-color: #1b1f27;
+  background-color: #222831;
   color: #fff;
   height: 100vh;
   font-size: 20px;
@@ -28,10 +28,9 @@ button {
 }
 
 .neu {
-  padding: 15px 25px;
-  border-radius: 46px;
-  background: #1b1f27;
-  box-shadow: 5px 5px 10px #101217, -5px -5px 10px #262c37;
+  border-radius: 20px;
+  background: #222831;
+  box-shadow: 5px 5px 10px #13161b, -5px -5px 10px #313a47;
 }
 
 .title {
@@ -41,14 +40,18 @@ button {
 
 input.neu,
 button.neu {
+  padding: 15px 25px;
   border: none;
-  outline: none;
   color: rgb(214, 0, 0);
+}
+
+input.neu {
+  margin-top: 10px;
 }
 
 input.neu,
 button.neu:active {
-  box-shadow: inset 5px 5px 10px #101217, inset -5px -5px 10px #262c37;
+  box-shadow: inset 5px 5px 10px #13161b, inset -5px -5px 10px #313a47;
 }
 
 .container {
@@ -59,33 +62,38 @@ button.neu:active {
   align-items: center;
 }
 
-.login {
-  padding: 30px 20px;
+.link {
+  color: #fff;
+}
+
+.form {
+  padding: 5px 20px;
+  margin: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.login > * {
-  margin: 20px 0;
+.form > * {
+  margin: 15px 0;
 }
 
-.login > .btn {
+.form > .btn {
   transition: 0.3s;
 }
 
-.login > .btn:disabled {
+.form > .btn:disabled {
   box-shadow: none;
   opacity: 0.6;
 }
 
-.login .label {
-  margin-top: 30px !important;
+.form .label {
+  margin-top: 10px !important;
   margin-bottom: 0 !important;
 }
 
-.login .input {
+.form .input {
   min-width: 320px;
 }
 
@@ -98,7 +106,7 @@ button.neu:active {
   height: 90%;
   display: grid;
   grid-template-columns: 1fr 4fr;
-  grid-template-rows: 76vh 1fr;
+  grid-template-rows: 76vh 100px;
   grid-gap: 15px;
   grid-template-areas:
     'list box'
@@ -113,7 +121,7 @@ button.neu:active {
   grid-area: box;
 }
 
-.content-grid > .input {
+.content-grid > .chat-input {
   grid-area: input;
 }
 
@@ -122,25 +130,17 @@ ul {
   margin: 0;
 }
 
-.input {
+.chat-input {
   display: flex;
+  padding: 20px;
 }
 
-.input > * {
-  padding: 0;
-}
-
-.input > input {
-  padding-left: 25px;
+.chat-input > input {
   flex-grow: 1;
-  margin-right: 20px;
+  margin: 0 20px 0 0;
 }
 
-.input > button {
-  padding: 0 20px;
-}
-
-.input > button::before {
+.chat-input > button::before {
   content: 'Send';
 }
 
@@ -154,31 +154,37 @@ ul {
   overflow-y: auto;
 }
 
-.users-list > ul {
-  padding-left: 10px;
+.users-list > ul,
+.chat-box > ul {
+  padding: 10px;
 }
 
 .chat-box > ul > .chat-message {
   overflow-wrap: break-word;
 }
 
-@media only screen and (max-width: 600px) {
-  .neu.login,
+@media only screen and (max-width: 800px) {
+  .neu.form,
   .neu.content-grid {
     box-shadow: none;
     border-radius: 0;
   }
 
-  .login {
+  .form {
     width: 100%;
     height: 100%;
+  }
+
+  .form .input {
+    width: 100%;
+    min-width: 150px;
   }
 
   .content-grid {
     width: 100%;
     height: 100%;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 3fr 55px;
+    grid-template-rows: 1fr 3fr 100px;
     grid-gap: 15px;
     grid-template-areas:
       'list'
@@ -186,12 +192,7 @@ ul {
       'input';
   }
 
-  .input > button::before {
+  .chat-input > button::before {
     content: '>';
-  }
-
-  .chat-box > ul,
-  .users-list > ul {
-    padding: 0;
   }
 }

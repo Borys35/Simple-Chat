@@ -13,12 +13,13 @@ function ChatInput(props) {
   }
 
   return (
-    <div className="input">
+    <div className="chat-input">
       <input
         className="neu"
         type="text"
         value={message}
         placeholder="Enter your message..."
+        size="1"
         autoFocus
         onChange={handleChange}
         onKeyPress={e => e.key === 'Enter' && handleSend()}

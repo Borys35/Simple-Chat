@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-function Login() {
+function Register() {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
@@ -10,17 +11,17 @@ function Login() {
   const history = useHistory();
 
   useEffect(() => {
-    setValid(email.match(/./) && password.match(/./));
-  }, [email, password]);
+    setValid(username.match(/./) && email.match(/./) && password.match(/./));
+  }, [username, email, password]);
 
-  const login = async () => {
-    console.log('loggin');
-    fetch('http://localhost:5000/api/users/login', {
+  const register = async () => {
+    fetch('http://localhost:5000/api/users/register', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
+        username,
         email,
         password
       }),
@@ -37,8 +38,20 @@ function Login() {
 
   return (
     <div className="neu form">
-      <h1 className="glow title">Login</h1>
+      <h1 className="glow title">Register</h1>
       {error && <small>{error}</small>}
+      <label className="label" htmlFor="username">
+        Username
+      </label>
+      <input
+        className="neu input"
+        id="username"
+        type="text"
+        onChange={e => setUsername(e.target.value)}
+        placeholder="Enter a username..."
+        size="1"
+        onKeyPress={e => e.key === 'Enter' && register()}
+      />
       <label className="label" htmlFor="email">
         E-mail
       </label>
@@ -46,12 +59,10 @@ function Login() {
         className="neu input"
         id="email"
         type="text"
-        placeholder="Enter your e-mail..."
-        size="1"
-        autoFocus
-        autoComplete="off"
         onChange={e => setEmail(e.target.value)}
-        onKeyPress={e => e.key === 'Enter' && login()}
+        placeholder="Enter an e-mail..."
+        size="1"
+        onKeyPress={e => e.key === 'Enter' && register()}
       />
       <label className="label" htmlFor="password">
         Password
@@ -60,22 +71,21 @@ function Login() {
         className="neu input"
         id="password"
         type="password"
-        placeholder="Enter your password..."
-        size="1"
-        autoComplete="off"
         onChange={e => setPassword(e.target.value)}
-        onKeyPress={e => e.key === 'Enter' && login()}
+        placeholder="Enter a password..."
+        size="1"
+        onKeyPress={e => e.key === 'Enter' && register()}
       />
-      <button className="neu glow btn" disabled={!valid} onClick={login}>
-        Sign in
+      <button className="neu glow btn" disabled={!valid} onClick={register}>
+        Sign up
       </button>
       <small>
-        <Link className="link" to="/register">
-          Don't have account? Sign up
+        <Link className="link" to="/login">
+          Do you have account? Sign in
         </Link>
       </small>
     </div>
   );
 }
 
-export default Login;
+export default Register;

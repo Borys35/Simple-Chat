@@ -3,6 +3,28 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const path = require('path');
+const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+require('dotenv').config();
+
+app.use(cookieParser());
+app.use(express.json());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  next();
+});
+
+// IMPLEMENTING ROUTES
+const usersRoute = require('./server/routes/users');
+
+// SETTING ROUTES
+app.use('/api/users', usersRoute);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
@@ -12,9 +34,9 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// DABATABE TO IMPLEMENT IN FUTURE
+// SETTING UP SOCKET
+// DATABABE TO IMPLEMENT IN FUTURE
 const rooms = [];
-
 io.on('connection', socket => {
   let user;
   let room;
@@ -50,6 +72,15 @@ io.on('connection', socket => {
   });
 });
 
+mongoose.connect(
+  process.env.MONGODB_ATLAS_URI,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => {
+    console.log('Connected to database');
+  }
+);
+
+// CONNECTING TO SERVER
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
   console.log(`Listening on port ${port}`);
